@@ -1,6 +1,6 @@
 {
-    "name": "src",
-    "short_name": "src",
+    "name": "cool hunter",
+    "short_name": "coolhunter",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
