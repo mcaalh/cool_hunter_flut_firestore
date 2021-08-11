@@ -2,28 +2,29 @@ import 'package:CoolHunter/models/models.dart';
 import 'package:get/get.dart';
 
 abstract class AuthenticationService extends GetxService {
-  Future<User?> getCurrentUser();
-  Future<User> signInWithEmailAndPassword(String email, String password);
+  Future<UserModel?> getCurrentUser();
+  Future<UserModel> signInWithEmailAndPassword(String email, String password);
   Future<void> signOut();
 }
 
 class FakeAuthenticationService extends AuthenticationService {
   @override
-  Future<User?> getCurrentUser() async {
+  Future<UserModel?> getCurrentUser() async {
     // simulated delay
     await Future.delayed(Duration(seconds: 2));
     return null;
   }
 
   @override
-  Future<User> signInWithEmailAndPassword(String email, String password) async {
+  Future<UserModel> signInWithEmailAndPassword(
+      String email, String password) async {
     await Future.delayed(Duration(seconds: 2));
 
     if (email.toLowerCase() != 'test@domain.com' || password != 'testpass123') {
       throw AuthenticationException(message: 'Wrong username or password');
     }
 
-    return User(name: 'Test User', email: email);
+    return UserModel(name: 'Test User', email: email);
   }
 
   @override

@@ -1,3 +1,4 @@
+import 'package:CoolHunter/constants/controllers.dart';
 import 'package:CoolHunter/screens/home/my_home_screen.dart';
 import 'package:CoolHunter/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +34,7 @@ class RegisterScreen extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                   child: TextField(
-                    controller: null,
+                    controller: authenticationController.name,
                     decoration: InputDecoration(
                         icon: Icon(Icons.person),
                         fillColor: Colors.white,
@@ -58,7 +59,7 @@ class RegisterScreen extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                   child: TextField(
-                    controller: null,
+                    controller: authenticationController.email,
                     decoration: InputDecoration(
                         icon: Icon(Icons.email_outlined),
                         fillColor: Colors.white,
@@ -83,7 +84,7 @@ class RegisterScreen extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                   child: TextField(
-                    controller: null,
+                    controller: authenticationController.password,
                     decoration: const InputDecoration(
                         icon: Icon(Icons.lock),
                         fillColor: Colors.white,

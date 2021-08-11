@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:CoolHunter/constants/controllers.dart';
-import 'package:CoolHunter/screens/home/home_screen.dart';
 import 'package:CoolHunter/screens/home/my_home_screen.dart';
 import 'package:CoolHunter/widgets/custom_button.dart';
 import 'package:get/get.dart';
