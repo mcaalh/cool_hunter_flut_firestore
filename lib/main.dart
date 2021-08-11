@@ -1,3 +1,4 @@
+import 'package:CoolHunter/screens/authentication/authentication_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:CoolHunter/controllers/authentication_controller.dart';
 import 'package:CoolHunter/controllers/states/authentication_state.dart';
@@ -9,6 +10,8 @@ import 'package:CoolHunter/screens/splash/splash_screen.dart';
 import 'package:CoolHunter/services/authentication_service.dart';
 import 'package:get/get.dart';
 
+import 'controllers/app_controller.dart';
+
 void main() {
   initialize();
   runApp(MyApp());
@@ -18,6 +21,7 @@ void initialize() {
   Get.lazyPut(
     () => AuthenticationController(Get.put(FakeAuthenticationService())),
   );
+  Get.put(AppController());
 }
 
 class MyApp extends GetWidget<AuthenticationController> {
@@ -25,15 +29,11 @@ class MyApp extends GetWidget<AuthenticationController> {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Fluter GetX Auth',
-      theme: ThemeData(
-        primarySwatch: Colors.purple,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
+      title: 'Cool Hunter',
       debugShowCheckedModeBanner: false,
       home: Obx(() {
         if (controller.state is UnAuthenticated) {
-          return LoginScreenNew();
+          return AuthenticationScreen();
         }
 
         if (controller.state is Authenticated) {

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:CoolHunter/screens/home/widgets/home_nav_bar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:CoolHunter/controllers/authentication_controller.dart';
@@ -67,7 +68,7 @@ class MyHomeScreen extends StatelessWidget {
       ),
       body: Column(
         children: <Widget>[
-          // const HomeNavBarWidget(),
+          const HomeNavBarWidget(),
           Expanded(child: GridViewWidget(categories: data.toList())),
         ],
       ),

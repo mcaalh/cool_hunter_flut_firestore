@@ -30,4 +30,69 @@ dev_dependencies:
     sdk: flutter
 
 flutter:
+
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
   uses-material-design: true
+
+  assets:
+    - assets/
+    - assets/data/
+    - assets/icons/
+    - assets/images/
+    - assets/images/404/
+    - assets/images/0_home/
+    - assets/images/1_visite/
+    - assets/images/2_hebergement_gastronomie/
+    - assets/images/3_shopping/
+    - assets/images/4_etudiants/
+    - assets/images/5_mes_bons_plans/
+    - assets/images/6_mes_infos_pratiques/
+    - assets/images/7_mon_offre/
+    - assets/images/_brand/
+    - assets/logos/
+  # To add assets to your application, add an assets section, like this:
+  # assets:
+  #   - images/a_dot_burr.jpeg
+  #   - images/a_dot_ham.jpeg
+
+  # An image asset can refer to one or more resolution-specific "variants", see
+  # https://flutter.dev/assets-and-images/#resolution-aware.
+
+  # For details regarding adding assets from package dependencies, see
+  # https://flutter.dev/assets-and-images/#from-packages
+
+  # To add custom fonts to your application, add a fonts section here,
+  # in this "flutter" section. Each entry in this list should have a
+  # "family" key with the font family name, and a "fonts" key with a
+  # list giving the asset and other descriptors for the font. For
+  # example:
+  fonts:
+    - family:  MesIcon
+      fonts:
+        - asset: assets/fonts/MesIcon.ttf
+    
+    - family:  MesInfoIcon
+      fonts:
+        - asset: assets/fonts/MesInfoIcon.ttf
+
+    - family: BytelIcons
+      fonts:
+        - asset: assets/fonts/BytelIcons.ttf
+    
+    - family: BouyguesSpeak
+      fonts:
+        - asset: assets/fonts/Bouygues-Speak.ttf
+
+    - family: BouyguesRead
+      fonts:
+        - asset: assets/fonts/BouyguesRead-Regular.ttf
+        - asset: assets/fonts/BouyguesRead-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/BouyguesRead-Semibold.ttf
+          weight: 700
+        - asset: assets/fonts/BouyguesRead-Bold.ttf
+          weight: 900
+        - asset: assets/fonts/BouyguesRead-Italic.ttf
+          style: italic
