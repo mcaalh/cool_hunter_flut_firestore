@@ -101,7 +101,7 @@ class RegisterScreen extends StatelessWidget {
               bgColor: Colors.blue.shade700,
               text: 'Register',
               onTap: () {
-                Get.to<dynamic>(MyHomeScreen());
+                authenticationController.signUp();
               },
               txtColor: Colors.black,
               shadowColor: Colors.amberAccent,

@@ -1,11 +1,9 @@
 import 'package:CoolHunter/constants/firebase.dart';
-import 'package:CoolHunter/controllers/states/authentication_state.dart';
 import 'package:CoolHunter/models/user.dart';
 import 'package:CoolHunter/screens/authentication/authentication_screen.dart';
 import 'package:CoolHunter/screens/home/my_home_screen.dart';
-// import 'package:CoolHunter/models/user.dart';
-import 'package:CoolHunter/services/authentication_service.dart';
 import 'package:CoolHunter/widgets/utils/show_loading.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,24 +16,17 @@ class AuthenticationController extends GetxController {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
   String usersCollection = "users";
-  Rx<UserModel> userModel = UserModel(name: '', email: 'email').obs;
-
-  final AuthenticationService _authenticationService;
-  final _authenticationStateStream = AuthenticationState().obs;
-
-  AuthenticationState get state => _authenticationStateStream.value;
-
-  AuthenticationController(this._authenticationService);
-
-  // @override
-  // void onInit() {
-  //   _getAuthenticatedUser();
-  //   super.onInit();
-  // }
+  Rx<UserModel> userModel = UserModel(
+    name: '',
+    email: '',
+    id: '',
+    favourites: [],
+  ).obs;
 
   @override
   void onReady() {
     super.onReady();
+    print('ready');
     firebaseUser = Rx<User?>(auth.currentUser);
     firebaseUser.bindStream(auth.userChanges());
     ever(firebaseUser, _setInitialScreen);
@@ -48,9 +39,6 @@ class AuthenticationController extends GetxController {
           .signInWithEmailAndPassword(
               email: email.text.trim(), password: password.text.trim())
           .then((result) {
-        print(result.user.toString());
-        // _authenticationStateStream.value =
-        //     Authenticated(user: result.user as User);
         dismissLoadingWidget();
         _clearControllers();
       });
@@ -59,28 +47,28 @@ class AuthenticationController extends GetxController {
       debugPrint(e.toString());
       Get.snackbar("Sign In Failed", "Try again");
     }
-    // _authenticationStateStream.value = Authenticated(user: user);
+  }
+
+  Future<void> signUp() async {
+    showLoading();
+    try {
+      await auth
+          .createUserWithEmailAndPassword(
+              email: email.text.trim(), password: password.text.trim())
+          .then((result) {
+        String _userId = result.user!.uid;
+        _addUserToFirestore(_userId);
+        _clearControllers();
+        dismissLoadingWidget();
+      });
+    } catch (e) {
+      debugPrint(e.toString());
+      Get.snackbar("The registration Failed", "Try again later");
+    }
   }
 
   void signOut() async {
-    // await _authenticationService.signOut();
     auth.signOut();
-    _authenticationStateStream.value = UnAuthenticated();
-  }
-
-  void _getAuthenticatedUser() async {
-    _authenticationStateStream.value = AuthenticationLoading();
-
-    final user = await _authenticationService.getCurrentUser();
-    print('user to get');
-    print(user);
-
-    if (user == null) {
-      _authenticationStateStream.value = UnAuthenticated();
-    } else {
-      // _authenticationStateStream.value = Authenticated(user: user);
-      print('authenticated');
-    }
   }
 
   void _clearControllers() {
@@ -98,9 +86,35 @@ class AuthenticationController extends GetxController {
     }
   }
 
-  Stream<UserModel> listenToUser() => firebaseFirestore
-      .collection(usersCollection)
-      .doc(firebaseUser.value!.uid)
-      .snapshots()
-      .map((snapshot) => snapshot.data() as UserModel);
+  updateUserData(Map<String, dynamic> data) {
+    // logger.i("UPDATED");
+    print('User updated');
+    try {
+      firebaseFirestore
+          .collection(usersCollection)
+          .doc(firebaseUser.value!.uid)
+          .update(data);
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  Stream<UserModel> listenToUser() {
+    print('listen.....');
+    return firebaseFirestore
+        .collection(usersCollection)
+        .doc(firebaseUser.value!.uid)
+        .snapshots()
+        .map((snapshot) => UserModel.fromSnapshot(snapshot));
+  }
+
+  void _addUserToFirestore(String userId) {
+    firebaseFirestore.collection(usersCollection).doc(userId).set({
+      "name": name.text.trim(),
+      "id": userId,
+      "email": email.text.trim(),
+      // "donations": [],
+      "favourites": [],
+    });
+  }
 }

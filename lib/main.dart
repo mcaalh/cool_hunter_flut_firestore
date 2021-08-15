@@ -1,9 +1,9 @@
+import 'package:CoolHunter/controllers/favourites_controller.dart';
+import 'package:CoolHunter/controllers/projects_controller.dart';
 import 'package:CoolHunter/screens/authentication/authentication_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:CoolHunter/controllers/authentication_controller.dart';
-import 'package:CoolHunter/controllers/states/authentication_state.dart';
-import 'package:CoolHunter/screens/authentication/login/login_screen.dart';
 import 'package:CoolHunter/screens/authentication/login/login_screen_new.dart';
 import 'package:CoolHunter/screens/home/my_home_screen.dart';
 import 'package:CoolHunter/screens/splash/splash_screen.dart';
@@ -20,10 +20,13 @@ Future<void> main() async {
 }
 
 void initialize() {
-  Get.lazyPut(
-    () => AuthenticationController(Get.put(FakeAuthenticationService())),
-  );
+  // Get.lazyPut(
+  //   () => AuthenticationController(Get.put(FakeAuthenticationService())),
+  // );
+  Get.put(AuthenticationController());
   Get.put(AppController());
+  Get.put(ProjectsController());
+  Get.put(FavouritesController());
 }
 
 class MyApp extends GetWidget<AuthenticationController> {

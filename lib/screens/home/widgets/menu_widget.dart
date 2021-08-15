@@ -9,7 +9,7 @@ class MenuWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return RawMaterialButton(
       onPressed: () {
-        print('navbar tap');
+        Scaffold.of(context).openDrawer();
       },
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
       highlightColor: kHoverColor,

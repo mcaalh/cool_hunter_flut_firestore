@@ -1,6 +1,4 @@
-import 'package:CoolHunter/constants/asset_path.dart';
 import 'package:CoolHunter/controllers/app_controller.dart';
-import 'package:CoolHunter/screens/authentication/login/login_screen.dart';
 import 'package:CoolHunter/screens/authentication/login/login_screen_new.dart';
 import 'package:CoolHunter/screens/authentication/register/register_screen.dart';
 import 'package:CoolHunter/screens/authentication/widgets/bottom_text.dart';

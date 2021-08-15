@@ -22,8 +22,12 @@ dependencies:
   # state management
   provider: ^5.0.0
   get: ^4.3.0
+  uuid: ^3.0.4
+  logger: ^1.0.0
   equatable: ^2.0.3
   cupertino_icons: ^1.0.3 
+  timeago: ^3.1.0
+  modal_bottom_sheet: ^2.0.0
 
 dev_dependencies:
   flutter_test:

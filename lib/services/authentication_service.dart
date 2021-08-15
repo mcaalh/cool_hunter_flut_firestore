@@ -24,7 +24,7 @@ class FakeAuthenticationService extends AuthenticationService {
       throw AuthenticationException(message: 'Wrong username or password');
     }
 
-    return UserModel(name: 'Test User', email: email);
+    return UserModel(name: 'Test User', email: email, id: '', favourites: []);
   }
 
   @override
