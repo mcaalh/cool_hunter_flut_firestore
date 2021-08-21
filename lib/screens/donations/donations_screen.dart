@@ -1,3 +1,4 @@
+import 'package:CoolHunter/constants/controllers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -23,7 +24,7 @@ class DonationsScreen extends StatelessWidget {
       body: ListView(
         children: [
           Column(
-              // children: paymentsController.payments
+              // children: donationController.payments
               //     .map((payment) => PaymentWidget(
               //           paymentsModel: payment,
               //         ))

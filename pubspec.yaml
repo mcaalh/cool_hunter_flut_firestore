@@ -13,6 +13,7 @@ dependencies:
     sdk: flutter
   flutter_staggered_grid_view: ^0.4.0
   firebase_core: "^1.4.0"
+  cloud_functions: ^3.0.0
   cloud_firestore: ^2.4.0
   firebase_messaging: ^10.0.4
   google_maps_flutter: ^2.0.6
@@ -28,6 +29,12 @@ dependencies:
   cupertino_icons: ^1.0.3 
   timeago: ^3.1.0
   modal_bottom_sheet: ^2.0.0
+  dio: ^4.0.0
+  http: ^0.13.3
+  flutter_dotenv: ^5.0.0
+
+  #Stripe paiement
+  flutter_stripe: ^1.2.0
 
 dev_dependencies:
   flutter_test:
@@ -41,6 +48,7 @@ flutter:
   uses-material-design: true
 
   assets:
+    - .env
     - assets/
     - assets/data/
     - assets/icons/
@@ -55,6 +63,7 @@ flutter:
     - assets/images/6_mes_infos_pratiques/
     - assets/images/7_mon_offre/
     - assets/images/_brand/
+    - assets/img/
     - assets/logos/
   # To add assets to your application, add an assets section, like this:
   # assets:

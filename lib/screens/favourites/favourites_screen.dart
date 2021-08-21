@@ -10,28 +10,28 @@ class FavouritesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
-      children: [
+      children: <Widget>[
         ListView(
-          children: [
-            SizedBox(
+          children: <Widget>[
+            const SizedBox(
               height: 10,
             ),
-            Center(
+            const Center(
               child: CustomText(
-                text: "Heart heart",
+                text: 'Heart heart',
                 size: 24,
                 weight: FontWeight.bold,
                 color: Colors.amber,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 5,
             ),
             Obx(
               () => Column(
                 children: authenticationController.userModel.value.favourites
-                    .map((favItem) => Text(
-                              favItem,
+                    .map((dynamic favItem) => Text(
+                              favItem.toString(),
                               style: kLink,
                             )
                         // (cartItem) => FavouriteCardWidget(
@@ -51,9 +51,10 @@ class FavouritesScreen extends StatelessWidget {
                 child: Obx(
                   () => CustomButton(
                     text:
-                        "Pay (\$${favouritesController.totalCartPrice.value.toStringAsFixed(2)})",
+                        'Pay (\$${favouritesController.totalCartPrice.value.toStringAsFixed(2)})',
                     onTap: () {
                       // paymentsController.createPaymentMethod();
+                      donationController.makePayment();
                     },
                     bgColor: Colors.amber,
                     shadowColor: Colors.black12,

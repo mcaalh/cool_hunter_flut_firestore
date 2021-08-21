@@ -1,6 +1,7 @@
 import 'package:CoolHunter/constants/controllers.dart';
 import 'package:CoolHunter/controllers/projects_controller.dart';
 import 'package:CoolHunter/models/project.dart';
+import 'package:CoolHunter/screens/details/details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:CoolHunter/models/category.dart';
 import 'package:CoolHunter/theme/bytel_icons_icons.dart';
@@ -19,8 +20,8 @@ class GridViewWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(() => StaggeredGridView.countBuilder(
           staggeredTileBuilder: (int index) =>
-              StaggeredTile.fit(index % 3 == 0 ? 6 : 2),
-          crossAxisCount: 8,
+              StaggeredTile.fit(index % 3 == 0 ? 6 : 3),
+          crossAxisCount: 9,
           itemCount: projectsController.projects.length,
           itemBuilder: (BuildContext context, int index) => _buildCard(index),
         ));
@@ -41,11 +42,16 @@ class GridViewWidget extends StatelessWidget {
         // mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          ClipRRect(
-            borderRadius: BorderRadius.circular(8.0),
-            child: Image.network(
-              data[index].imageURL,
-              fit: BoxFit.cover,
+          GestureDetector(
+            onTap: () {
+              Get.to(DetailsScreen());
+            },
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(8.0),
+              child: Image.network(
+                data[index].imageURL,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
           Row(

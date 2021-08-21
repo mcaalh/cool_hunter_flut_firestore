@@ -1,4 +1,6 @@
 import 'package:CoolHunter/constants/firebase.dart';
+import 'package:CoolHunter/models/donation.dart';
+import 'package:CoolHunter/models/favourite.dart';
 import 'package:CoolHunter/models/user.dart';
 import 'package:CoolHunter/screens/authentication/authentication_screen.dart';
 import 'package:CoolHunter/screens/home/my_home_screen.dart';
@@ -15,18 +17,18 @@ class AuthenticationController extends GetxController {
   TextEditingController name = TextEditingController();
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
-  String usersCollection = "users";
+  String usersCollection = 'users';
   Rx<UserModel> userModel = UserModel(
     name: '',
     email: '',
     id: '',
-    favourites: [],
+    favourites: <String>[],
+    donations: <String>[],
   ).obs;
 
   @override
   void onReady() {
     super.onReady();
-    print('ready');
     firebaseUser = Rx<User?>(auth.currentUser);
     firebaseUser.bindStream(auth.userChanges());
     ever(firebaseUser, _setInitialScreen);
@@ -38,14 +40,14 @@ class AuthenticationController extends GetxController {
       await auth
           .signInWithEmailAndPassword(
               email: email.text.trim(), password: password.text.trim())
-          .then((result) {
+          .then((UserCredential result) {
         dismissLoadingWidget();
         _clearControllers();
       });
     } catch (e) {
       dismissLoadingWidget();
       debugPrint(e.toString());
-      Get.snackbar("Sign In Failed", "Try again");
+      Get.snackbar<dynamic>('Sign In Failed', 'Try again');
     }
   }
 
@@ -55,19 +57,19 @@ class AuthenticationController extends GetxController {
       await auth
           .createUserWithEmailAndPassword(
               email: email.text.trim(), password: password.text.trim())
-          .then((result) {
-        String _userId = result.user!.uid;
+          .then((UserCredential result) {
+        final String _userId = result.user!.uid;
         _addUserToFirestore(_userId);
         _clearControllers();
         dismissLoadingWidget();
       });
     } catch (e) {
       debugPrint(e.toString());
-      Get.snackbar("The registration Failed", "Try again later");
+      Get.snackbar<dynamic>('The registration Failed', 'Try again later');
     }
   }
 
-  void signOut() async {
+  Future<void> signOut() async {
     auth.signOut();
   }
 
@@ -77,16 +79,16 @@ class AuthenticationController extends GetxController {
     password.clear();
   }
 
-  _setInitialScreen(User? user) {
+  void _setInitialScreen(User? user) {
     if (user == null) {
-      Get.offAll(() => AuthenticationScreen());
+      Get.offAll<dynamic>(() => AuthenticationScreen());
     } else {
       userModel.bindStream(listenToUser());
-      Get.offAll(() => MyHomeScreen());
+      Get.offAll<dynamic>(() => MyHomeScreen());
     }
   }
 
-  updateUserData(Map<String, dynamic> data) {
+  void updateUserData(Map<String, dynamic> data) {
     // logger.i("UPDATED");
     print('User updated');
     try {
@@ -100,21 +102,23 @@ class AuthenticationController extends GetxController {
   }
 
   Stream<UserModel> listenToUser() {
-    print('listen.....');
     return firebaseFirestore
         .collection(usersCollection)
         .doc(firebaseUser.value!.uid)
         .snapshots()
-        .map((snapshot) => UserModel.fromSnapshot(snapshot));
+        .map((DocumentSnapshot<Map<String, dynamic>> snapshot) =>
+            UserModel.fromSnapshot(snapshot));
   }
 
   void _addUserToFirestore(String userId) {
-    firebaseFirestore.collection(usersCollection).doc(userId).set({
-      "name": name.text.trim(),
-      "id": userId,
-      "email": email.text.trim(),
-      // "donations": [],
-      "favourites": [],
-    });
+    firebaseFirestore.collection(usersCollection).doc(userId).set(
+      <String, dynamic>{
+        'name': name.text.trim(),
+        'id': userId,
+        'email': email.text.trim(),
+        // "donations": [],
+        'favourites': <FavouriteModel>[],
+      },
+    );
   }
 }

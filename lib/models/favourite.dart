@@ -1,20 +1,6 @@
+import 'dart:ffi';
+
 class FavouriteModel {
-  static const ID = "id";
-  static const IMAGE = "image";
-  static const NAME = "name";
-  static const QUANTITY = "quantity";
-  static const COST = "cost";
-  static const PRICE = "price";
-  static const PROJECT_ID = "projectId";
-
-  late String id;
-  late String image;
-  late String name;
-  late int quantity;
-  late double cost;
-  late String projectId;
-  late double price;
-
   FavouriteModel({
     required this.projectId,
     required this.id,
@@ -25,16 +11,32 @@ class FavouriteModel {
   });
 
   FavouriteModel.fromMap(Map<String, dynamic> data) {
-    id = data[ID];
-    image = data[IMAGE];
-    name = data[NAME];
-    quantity = data[QUANTITY];
-    cost = data[COST].toDouble();
-    projectId = data[PROJECT_ID];
-    price = data[PRICE].toDouble();
+    id = data[ID] as String;
+    image = data[IMAGE] as String;
+    name = data[NAME] as String;
+    quantity = data[QUANTITY] as int;
+    cost = data[COST] as double;
+    projectId = data[PROJECT_ID] as String;
+    price = data[PRICE] as double;
   }
 
-  Map toJson() => {
+  static const String ID = 'id';
+  static const String IMAGE = 'image';
+  static const String NAME = 'name';
+  static const String QUANTITY = 'quantity';
+  static const String COST = 'cost';
+  static const String PRICE = 'price';
+  static const String PROJECT_ID = 'projectId';
+
+  late String id;
+  late String image;
+  late String name;
+  late int quantity;
+  late double cost;
+  late String projectId;
+  late double price;
+
+  Map<String, dynamic> toJson() => <String, dynamic>{
         ID: id,
         PROJECT_ID: projectId,
         IMAGE: image,

@@ -1,5 +1,4 @@
 import 'package:CoolHunter/screens/favourites/favourites_screen.dart';
-import 'package:CoolHunter/screens/favourites/widgets/favourite_card_widget.dart';
 import 'package:CoolHunter/screens/home/widgets/menu_widget.dart';
 import 'package:CoolHunter/theme/bytel_icons_icons.dart';
 import 'package:CoolHunter/theme/main_theme.dart';
@@ -18,14 +17,14 @@ class HomeNavBarWidget extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            MenuWidget(),
+            const MenuWidget(),
             IconButton(
               icon: Icon(BytelIcons.rvb_clients_commercial_coeur),
               color: kSecondaryLabelColor,
               onPressed: () {
-                showBarModalBottomSheet(
+                showBarModalBottomSheet<dynamic>(
                   context: context,
-                  builder: (context) => Container(
+                  builder: (BuildContext context) => Container(
                     color: Colors.white,
                     child: FavouritesScreen(),
                   ),

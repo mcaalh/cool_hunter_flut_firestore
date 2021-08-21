@@ -1,18 +1,17 @@
+import 'package:CoolHunter/controllers/donation_controller.dart';
 import 'package:CoolHunter/controllers/favourites_controller.dart';
 import 'package:CoolHunter/controllers/projects_controller.dart';
-import 'package:CoolHunter/screens/authentication/authentication_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:CoolHunter/controllers/authentication_controller.dart';
-import 'package:CoolHunter/screens/authentication/login/login_screen_new.dart';
-import 'package:CoolHunter/screens/home/my_home_screen.dart';
 import 'package:CoolHunter/screens/splash/splash_screen.dart';
-import 'package:CoolHunter/services/authentication_service.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 
 import 'controllers/app_controller.dart';
 
 Future<void> main() async {
+  dotenv.load(fileName: '.env');
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   initialize();
@@ -27,6 +26,7 @@ void initialize() {
   Get.put(AppController());
   Get.put(ProjectsController());
   Get.put(FavouritesController());
+  Get.put(DonationController());
 }
 
 class MyApp extends GetWidget<AuthenticationController> {
