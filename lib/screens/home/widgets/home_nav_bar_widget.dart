@@ -1,5 +1,6 @@
 import 'package:CoolHunter/screens/favourites/favourites_screen.dart';
 import 'package:CoolHunter/screens/home/widgets/menu_widget.dart';
+import 'package:CoolHunter/screens/home/widgets/search_widget.dart';
 import 'package:CoolHunter/theme/bytel_icons_icons.dart';
 import 'package:CoolHunter/theme/main_theme.dart';
 import 'package:flutter/material.dart';
@@ -18,8 +19,9 @@ class HomeNavBarWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             const MenuWidget(),
+            const Searchwidget(),
             IconButton(
-              icon: Icon(BytelIcons.rvb_clients_commercial_coeur),
+              icon: const Icon(BytelIcons.rvb_clients_commercial_coeur),
               color: kSecondaryLabelColor,
               onPressed: () {
                 showBarModalBottomSheet<dynamic>(

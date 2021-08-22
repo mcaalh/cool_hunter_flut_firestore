@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class ProjectModel {
   ProjectModel({
     required this.id,
@@ -8,6 +10,14 @@ class ProjectModel {
     // required this.category,
   });
 
+  ProjectModel.fromSnapshot(DocumentSnapshot snapshot) {
+    final Map<dynamic, dynamic> data =
+        snapshot.data()! as Map<dynamic, dynamic>;
+    id = data[ID] as String;
+    imageURL = data[IMAGE] as String;
+    name = data[NAME] as String;
+    description = data[DESC] as String;
+  }
   ProjectModel.fromMap(Map<String, dynamic> data) {
     id = data[ID] as String;
     imageURL = data[IMAGE] as String;

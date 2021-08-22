@@ -57,9 +57,10 @@ class AuthenticationController extends GetxController {
       await auth
           .createUserWithEmailAndPassword(
               email: email.text.trim(), password: password.text.trim())
-          .then((UserCredential result) {
-        final String _userId = result.user!.uid;
+          .then((UserCredential user) {
+        final String _userId = user.user!.uid;
         _addUserToFirestore(_userId);
+        user.user!.sendEmailVerification();
         _clearControllers();
         dismissLoadingWidget();
       });
