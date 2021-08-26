@@ -1,14 +1,11 @@
 import 'package:CoolHunter/constants/controllers.dart';
-import 'package:CoolHunter/controllers/projects_controller.dart';
 import 'package:CoolHunter/models/project.dart';
-import 'package:CoolHunter/screens/details/details_screen.dart';
+import 'package:CoolHunter/theme/cool_icons_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:CoolHunter/models/category.dart';
 import 'package:CoolHunter/theme/bytel_icons_icons.dart';
 import 'package:CoolHunter/theme/main_theme.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
-import 'package:like_button/like_button.dart';
 
 class GridViewWidget extends StatelessWidget {
   GridViewWidget({
@@ -31,6 +28,7 @@ class GridViewWidget extends StatelessWidget {
   Widget _buildCard(int index) {
     // print(project.name.toString());
     // final Category category = categories[index];
+    final ProjectModel project = data[index];
     return Obx(() {
       return Card(
         elevation: 0,
@@ -46,13 +44,40 @@ class GridViewWidget extends StatelessWidget {
           children: <Widget>[
             GestureDetector(
               onTap: () {
-                Get.to<dynamic>(const DetailsScreen());
+                Get.toNamed<dynamic>('/details-slide/',
+                    arguments: <String, dynamic>{
+                      'project': project,
+                      'index': index,
+                    });
+                // Get.toNamed<dynamic>('/details/',
+                //     arguments: <String, ProjectModel>{
+                //       'project': project,
+                //     });
               },
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8.0),
-                child: Image.network(
-                  data[index].imageURL,
-                  fit: BoxFit.cover,
+                child: Stack(
+                  alignment: Alignment.topRight,
+                  children: <Widget>[
+                    Hero(
+                      tag: project.imageURL,
+                      child: Image.network(
+                        project.imageURL,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    IconButton(
+                        onPressed: () {
+                          favouritesController.addProjectToFavourites(project);
+                        },
+                        icon: Icon(
+                          Icons.favorite,
+                          color: favouritesController
+                                  .isProjectAlreadyAdded(project)
+                              ? const Color(0xFFCC0047)
+                              : Colors.grey,
+                        ))
+                  ],
                 ),
               ),
             ),
@@ -61,9 +86,11 @@ class GridViewWidget extends StatelessWidget {
               children: <Widget>[
                 IconButton(
                   onPressed: () => print('up your cool attitude'),
-                  icon: const Icon(
-                    BytelIcons.rvb_divers_divers_motivation,
-                    color: Colors.black,
+                  icon: Icon(
+                    CoolIcons.f8896490c87ab7e94bf37195d14fddf5,
+                    color: favouritesController.isProjectAlreadyAdded(project)
+                        ? const Color(0xFFFFA200)
+                        : Colors.grey,
                   ),
                 ),
 
@@ -71,14 +98,11 @@ class GridViewWidget extends StatelessWidget {
                 IconButton(
                   color: Colors.redAccent,
                   onPressed: () {
-                    favouritesController.addProjectToFavourites(data[index]);
+                    donationController.applePayPayment();
                   },
                   icon: Icon(
-                    BytelIcons.rvb_clients_commercial_coeur,
-                    color:
-                        favouritesController.isProjectAlreadyAdded(data[index])
-                            ? const Color(0xFFCC0047)
-                            : Colors.grey,
+                    Icons.euro,
+                    color: Colors.green[400],
                   ),
                 ),
               ],

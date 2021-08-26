@@ -103,12 +103,14 @@ class AuthenticationController extends GetxController {
   }
 
   Stream<UserModel> listenToUser() {
-    return firebaseFirestore
+    final Stream<UserModel> user = firebaseFirestore
         .collection(usersCollection)
         .doc(firebaseUser.value!.uid)
         .snapshots()
         .map((DocumentSnapshot<Map<String, dynamic>> snapshot) =>
             UserModel.fromSnapshot(snapshot));
+
+    return user;
   }
 
   void _addUserToFirestore(String userId) {
@@ -117,8 +119,8 @@ class AuthenticationController extends GetxController {
         'name': name.text.trim(),
         'id': userId,
         'email': email.text.trim(),
-        // "donations": [],
-        'favourites': <FavouriteModel>[],
+        'donations': <String>[],
+        'favourites': <String>[],
       },
     );
   }

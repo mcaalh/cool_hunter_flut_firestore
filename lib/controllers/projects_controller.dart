@@ -6,8 +6,12 @@ import 'package:get/get.dart';
 class ProjectsController extends GetxController {
   static ProjectsController instance = Get.find();
   RxList<ProjectModel> projects = RxList<ProjectModel>([]);
-  Rx<ProjectModel> project =
-      ProjectModel(id: '', imageURL: '', name: '', description: '').obs;
+  Rx<ProjectModel> project = ProjectModel(
+      id: '',
+      imageURL: '',
+      name: '',
+      description: '',
+      donations: <String>[]).obs;
   String projectsCollection = 'projects';
 
   @override

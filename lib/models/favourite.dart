@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 class FavouriteModel {
   FavouriteModel({
     required this.projectId,

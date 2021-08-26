@@ -12,9 +12,8 @@ class UserModel {
     required this.favourites,
   });
 
-  UserModel.fromSnapshot(DocumentSnapshot snapshot) {
-    final Map<dynamic, dynamic> data =
-        snapshot.data()! as Map<dynamic, dynamic>;
+  UserModel.fromSnapshot(dynamic snapshot) {
+    final Map<String, dynamic> data = snapshot.data()! as Map<String, dynamic>;
     name = data['name'] as String;
     email = data['email'] as String;
     id = data['id'] as String;
