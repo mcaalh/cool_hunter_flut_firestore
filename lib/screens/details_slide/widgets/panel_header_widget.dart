@@ -15,31 +15,47 @@ class PanelHeaderWidget extends StatelessWidget {
   final VoidCallback onClickedFollowing;
 
   @override
-  Widget build(BuildContext context) => Row(
-        children: <Widget>[
-          // Expanded(child: buildProject()),
-          const Expanded(
-            child: ParticipantsWidget(),
-          ),
-          FollowButtonWidget(
-            isFollowing: favouritesController.isProjectAlreadyAdded(project),
-            onClicked: onClickedFollowing,
-          ),
-        ],
+  Widget build(BuildContext context) => Container(
+        padding: const EdgeInsets.all(10.0),
+        height: 75.0,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(50.0),
+          color: Colors.black45,
+        ),
+        child: Row(
+          children: <Widget>[
+            // Expanded(child: buildProject()),
+            const Expanded(
+              child: ParticipantsWidget(),
+            ),
+            FollowButtonWidget(
+              isFollowing: favouritesController.isProjectAlreadyAdded(project),
+              onClicked: onClickedFollowing,
+            ),
+          ],
+        ),
       );
 
-  Widget buildProject() => Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text(
-            project.name,
-            style: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
+  Widget buildProject() => Container(
+        padding: const EdgeInsets.all(10.0),
+        height: 300.0,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(50.0),
+          color: Colors.black45,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              project.name,
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-          ),
-          const SizedBox(height: 4),
-          Text(project.name),
-        ],
+            const SizedBox(height: 4),
+            Text(project.name),
+          ],
+        ),
       );
 }

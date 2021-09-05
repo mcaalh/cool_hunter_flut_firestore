@@ -27,15 +27,15 @@ class PanelWidget extends StatelessWidget {
                   topLeft: Radius.circular(30),
                   topRight: Radius.circular(30),
                 ),
-                color: Colors.white,
+                color: Colors.transparent,
               ),
-              child: buildProfile(),
+              child: buildProfile(context),
             ),
           ),
         ],
       );
 
-  Widget buildProfile() => GestureDetector(
+  Widget buildProfile(BuildContext context) => GestureDetector(
         behavior: HitTestBehavior.opaque,
         onTap: onClickedPanel,
         child: Container(
@@ -48,24 +48,34 @@ class PanelWidget extends StatelessWidget {
                 onClickedFollowing: onClickedFollowing,
               ),
               const SizedBox(height: 24),
-              Expanded(child: buildProfileDetails(project)),
+              Expanded(child: buildProfileDetails(context, project)),
             ],
           ),
         ),
       );
 
-  Widget buildProfileDetails(ProjectModel project) => Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text(
-            project.name,
-            style: const TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
+  Widget buildProfileDetails(BuildContext context, ProjectModel project) =>
+      Container(
+        padding: const EdgeInsets.all(10.0),
+        width: MediaQuery.of(context).size.width,
+        height: 100.0,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(50.0),
+          color: Colors.black45,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              project.name,
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-          ),
-          const SizedBox(height: 4),
-          Text(project.description),
-        ],
+            const SizedBox(height: 4),
+            Text(project.description),
+          ],
+        ),
       );
 }

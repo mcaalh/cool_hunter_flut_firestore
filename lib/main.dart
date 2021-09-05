@@ -1,8 +1,11 @@
 import 'package:CoolHunter/controllers/donation_controller.dart';
 import 'package:CoolHunter/controllers/favourites_controller.dart';
+import 'package:CoolHunter/controllers/map_controller.dart';
 import 'package:CoolHunter/controllers/projects_controller.dart';
 import 'package:CoolHunter/screens/details/details_screen.dart';
 import 'package:CoolHunter/screens/details_slide/details_slide_screen.dart';
+import 'package:CoolHunter/screens/map/map_screen.dart';
+import 'package:CoolHunter/screens/map/map_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:CoolHunter/controllers/authentication_controller.dart';
@@ -29,6 +32,7 @@ void initialize() {
   Get.put(ProjectsController());
   Get.put(FavouritesController());
   Get.put(DonationController());
+  Get.put(MapController());
 }
 
 class MyApp extends GetWidget<AuthenticationController> {
@@ -48,6 +52,10 @@ class MyApp extends GetWidget<AuthenticationController> {
             name: '/details-slide/',
             page: () => const DetailsSlideScreen(),
             transition: Transition.downToUp),
+        GetPage<dynamic>(
+            name: '/map/',
+            page: () => const MapScreen(),
+            transition: Transition.fade),
       ],
     );
   }

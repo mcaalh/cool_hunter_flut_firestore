@@ -4,6 +4,7 @@ import 'package:CoolHunter/screens/home/widgets/search_widget.dart';
 import 'package:CoolHunter/theme/bytel_icons_icons.dart';
 import 'package:CoolHunter/theme/main_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class HomeNavBarWidget extends StatelessWidget {
@@ -20,6 +21,13 @@ class HomeNavBarWidget extends StatelessWidget {
           children: <Widget>[
             const MenuWidget(),
             const Searchwidget(),
+            IconButton(
+              icon: const Icon(Icons.map),
+              color: kSecondaryLabelColor,
+              onPressed: () {
+                Get.toNamed<dynamic>('/map/');
+              },
+            ),
             IconButton(
               icon: const Icon(BytelIcons.rvb_clients_commercial_coeur),
               color: kSecondaryLabelColor,

@@ -2,6 +2,7 @@ import 'package:CoolHunter/constants/controllers.dart';
 import 'package:CoolHunter/constants/firebase.dart';
 import 'package:CoolHunter/models/models.dart';
 import 'package:CoolHunter/screens/home/widgets/home_nav_bar_widget.dart';
+import 'package:CoolHunter/screens/home/widgets/menu_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:CoolHunter/controllers/authentication_controller.dart';
 import 'package:CoolHunter/models/category.dart';
@@ -19,6 +20,7 @@ class MyHomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Category> data = [];
     return Scaffold(
+      extendBodyBehindAppBar: true,
       drawer: Drawer(
         child: ListView(
           children: <Widget>[
