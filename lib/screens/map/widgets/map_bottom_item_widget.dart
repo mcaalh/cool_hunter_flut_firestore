@@ -1,5 +1,4 @@
 import 'package:CoolHunter/constants/controllers.dart';
-import 'package:CoolHunter/models/coffee.dart';
 import 'package:flutter/material.dart';
 
 class MapBottomItemWidget extends StatelessWidget {
@@ -17,7 +16,7 @@ class MapBottomItemWidget extends StatelessWidget {
       builder: (BuildContext context, Widget? widget) {
         double value = 1;
         if (_pageController.position.haveDimensions) {
-          print(_pageController.position);
+          // print(_pageController.position);
           value = _pageController.page!.toDouble() - index;
           value = (1 - (value.abs() * 0.3) + 0.06).clamp(0.0, 1.0);
         }
@@ -69,8 +68,8 @@ class MapBottomItemWidget extends StatelessWidget {
                               topRight: Radius.circular(10.0),
                               topLeft: Radius.circular(10.0)),
                           image: DecorationImage(
-                              image: NetworkImage(coffeeShops[index.toInt()]
-                                  .thumbNail
+                              image: NetworkImage(projectsController
+                                  .projects[index.toInt()].imageURL
                                   .toString()),
                               fit: BoxFit.cover),
                         ),
@@ -82,17 +81,22 @@ class MapBottomItemWidget extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(
-                              coffeeShops[index.toInt()].shopName.toString(),
+                              projectsController.projects[index.toInt()].name
+                                  .toString(),
                               style: const TextStyle(
                                   fontSize: 12.5, fontWeight: FontWeight.bold),
                             ),
                             Text(
-                              coffeeShops[index.toInt()].address.toString(),
+                              projectsController
+                                  .projects[index.toInt()].description
+                                  .toString(),
                               style: const TextStyle(
                                   fontSize: 12.0, fontWeight: FontWeight.w600),
                             ),
                             Text(
-                              coffeeShops[index.toInt()].description.toString(),
+                              projectsController
+                                  .projects[index.toInt()].description
+                                  .toString(),
                               style: const TextStyle(
                                   fontSize: 11.0, fontWeight: FontWeight.w300),
                             )

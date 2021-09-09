@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class ProjectModel {
   ProjectModel({
@@ -7,6 +8,7 @@ class ProjectModel {
     required this.name,
     required this.description,
     required this.donations,
+    required this.location,
     // this.price,
     // required this.category,
   });
@@ -19,6 +21,7 @@ class ProjectModel {
     name = data[NAME] as String;
     description = data[DESC] as String;
     donations = data[DONATIONS] as List<dynamic>;
+    location = data[LOCATION] as GeoPoint;
   }
   ProjectModel.fromMap(Map<String, dynamic> data) {
     id = data[ID] as String;
@@ -26,6 +29,7 @@ class ProjectModel {
     name = data[NAME] as String;
     description = data[DESC] as String;
     donations = data[DONATIONS] as List<dynamic>;
+    location = data[LOCATION] as GeoPoint;
     // category = data[CATEGORY];
     // price = data[PRICE].toDouble();
   }
@@ -34,6 +38,7 @@ class ProjectModel {
   static const String NAME = 'name';
   static const String DESC = 'description';
   static const String DONATIONS = 'donations';
+  static const String LOCATION = 'location';
   // static const CATEGORY = "category";
   // static const PRICE = "price";
 
@@ -42,6 +47,7 @@ class ProjectModel {
   late String name;
   late String description;
   late List<dynamic> donations;
+  late GeoPoint location;
   // late double? price;
   // late String category;
 }
