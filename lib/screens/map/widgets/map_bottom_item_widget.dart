@@ -1,5 +1,7 @@
 import 'package:CoolHunter/constants/controllers.dart';
+import 'package:CoolHunter/models/project.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class MapBottomItemWidget extends StatelessWidget {
   MapBottomItemWidget({
@@ -11,6 +13,7 @@ class MapBottomItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final PageController _pageController = mapController.pageController;
+    final ProjectModel _project = projectsController.projects[index.toInt()];
     return AnimatedBuilder(
       animation: _pageController,
       builder: (BuildContext context, Widget? widget) {
@@ -31,6 +34,7 @@ class MapBottomItemWidget extends StatelessWidget {
       child: InkWell(
         onTap: () {
           // moveCamera();
+          mapController.setShowWindow(MarkerId(_project.name.toString()));
           mapController.moveCamera();
           print('tap inkwell');
         },

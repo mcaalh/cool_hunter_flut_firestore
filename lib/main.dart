@@ -5,7 +5,7 @@ import 'package:CoolHunter/controllers/projects_controller.dart';
 import 'package:CoolHunter/screens/details/details_screen.dart';
 import 'package:CoolHunter/screens/details_slide/details_slide_screen.dart';
 import 'package:CoolHunter/screens/map/map_screen.dart';
-import 'package:CoolHunter/screens/map/map_screen.dart';
+import 'package:CoolHunter/screens/profile/profile_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:CoolHunter/controllers/authentication_controller.dart';
@@ -20,7 +20,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   initialize();
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 void initialize() {
@@ -36,6 +36,7 @@ void initialize() {
 }
 
 class MyApp extends GetWidget<AuthenticationController> {
+  const MyApp({Key? key}) : super(key: key);
   // This widget is the root of your application
   @override
   Widget build(BuildContext context) {
@@ -55,6 +56,10 @@ class MyApp extends GetWidget<AuthenticationController> {
         GetPage<dynamic>(
             name: '/map/',
             page: () => const MapScreen(),
+            transition: Transition.zoom),
+        GetPage<dynamic>(
+            name: '/profile/',
+            page: () => const ProfileScreen(),
             transition: Transition.fade),
       ],
     );

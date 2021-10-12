@@ -11,15 +11,16 @@ class Searchwidget extends StatelessWidget {
         padding: const EdgeInsets.only(left: 12.0, right: 33.0),
         child: Container(
           decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(14.0),
-              boxShadow: const <BoxShadow>[
-                BoxShadow(
-                  color: kShadowColor,
-                  offset: Offset(0, 12),
-                  blurRadius: 16.0,
-                )
-              ]),
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(14.0),
+            boxShadow: const <BoxShadow>[
+              BoxShadow(
+                color: kShadowColor,
+                offset: Offset(0, 12),
+                blurRadius: 16.0,
+              )
+            ],
+          ),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: TextField(

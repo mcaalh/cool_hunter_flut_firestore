@@ -37,6 +37,8 @@ dependencies:
 
   #Stripe paiement
   flutter_stripe: ^1.2.0
+  location: ^4.3.0
+  lottie: ^1.2.0
 
 dev_dependencies:
   flutter_test:
@@ -99,18 +101,14 @@ flutter:
       fonts:
         - asset: assets/fonts/BytelIcons.ttf
     
-    - family: BouyguesSpeak
+    - family: BestSchoolFont
       fonts:
-        - asset: assets/fonts/Bouygues-Speak.ttf
+        - asset: assets/fonts/BestSchoolFont.otf
 
-    - family: BouyguesRead
+    - family: BestSchoolDingbatFont
       fonts:
-        - asset: assets/fonts/BouyguesRead-Regular.ttf
-        - asset: assets/fonts/BouyguesRead-Medium.ttf
-          weight: 500
-        - asset: assets/fonts/BouyguesRead-Semibold.ttf
-          weight: 700
-        - asset: assets/fonts/BouyguesRead-Bold.ttf
-          weight: 900
-        - asset: assets/fonts/BouyguesRead-Italic.ttf
-          style: italic
+        - asset: assets/fonts/BestSchoolDingbatFont.otf
+    
+    - family: BestSchoolOutlineFont
+      fonts:
+        - asset: assets/fonts/BestSchoolOutlineFont.otf

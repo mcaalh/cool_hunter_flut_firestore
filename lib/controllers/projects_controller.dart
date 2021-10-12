@@ -2,19 +2,18 @@ import 'package:CoolHunter/constants/firebase.dart';
 import 'package:CoolHunter/models/project.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class ProjectsController extends GetxController {
   static ProjectsController instance = Get.find();
-  RxList<ProjectModel> projects = RxList<ProjectModel>([]);
+  RxList<ProjectModel> projects = RxList<ProjectModel>(<ProjectModel>[]);
   Rx<ProjectModel> project = ProjectModel(
-          id: '',
-          imageURL: '',
-          name: '',
-          description: '',
-          donations: <String>[],
-          location: GeoPoint(40.7128, -74.0060))
-      .obs;
+    id: '',
+    imageURL: '',
+    name: '',
+    description: '',
+    donations: <String>[],
+    location: const GeoPoint(40.7128, -74.0060),
+  ).obs;
   String projectsCollection = 'projects';
 
   @override
@@ -44,7 +43,7 @@ class ProjectsController extends GetxController {
 
   Future<ProjectModel> getUser(String uid) async {
     try {
-      final DocumentSnapshot _doc =
+      final DocumentSnapshot<Map<String, dynamic>> _doc =
           await firebaseFirestore.collection(projectsCollection).doc(uid).get();
 
       return ProjectModel.fromSnapshot(_doc);

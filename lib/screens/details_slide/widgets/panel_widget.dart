@@ -1,6 +1,5 @@
 import 'package:CoolHunter/models/project.dart';
 import 'package:CoolHunter/screens/details_slide/widgets/panel_header_widget.dart';
-import 'package:CoolHunter/screens/details_slide/widgets/participants_widget.dart';
 import 'package:CoolHunter/screens/details_slide/widgets/stats_widget.dart';
 import 'package:flutter/material.dart';
 

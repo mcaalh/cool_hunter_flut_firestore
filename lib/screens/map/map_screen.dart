@@ -1,5 +1,4 @@
 import 'package:CoolHunter/constants/controllers.dart';
-import 'package:CoolHunter/models/coffee.dart';
 import 'package:CoolHunter/screens/map/widgets/map_bottom_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,6 +9,7 @@ class MapScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List<Marker> markers = mapController.getAllMArkers();
     return Obx(() {
       return Scaffold(
           appBar: AppBar(
@@ -23,8 +23,10 @@ class MapScreen extends StatelessWidget {
                 width: MediaQuery.of(context).size.width,
                 child: GoogleMap(
                   initialCameraPosition: const CameraPosition(
-                      target: LatLng(48.864716, 2.349014), zoom: 20.0),
-                  markers: Set<Marker>.from(mapController.allMarkers),
+                    target: LatLng(48.864716, 2.349014),
+                    zoom: 14.0,
+                  ),
+                  markers: Set<Marker>.from(markers),
                   onMapCreated: mapCreated,
                 ),
               ),

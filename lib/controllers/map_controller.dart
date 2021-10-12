@@ -1,5 +1,5 @@
 import 'package:CoolHunter/constants/controllers.dart';
-import 'package:CoolHunter/models/coffee.dart';
+import 'package:location/location.dart';
 import 'package:CoolHunter/models/project.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -12,35 +12,41 @@ class MapController extends GetxController {
   late PageController pageController;
   RxList<Marker> allMarkers = <Marker>[].obs;
   int prevPage = 0;
-
-  @override
-  void onReady() {
-    super.onReady();
-    allMarkers.bindStream(getAllMArkers());
-  }
+  final Rx<BitmapDescriptor> _markerIcon = BitmapDescriptor.defaultMarker.obs;
+  late LocationData _currentPosition;
+  late String _address, _dateTime;
+  Location location = Location();
 
   @override
   void onInit() {
     // ignore: avoid_function_literals_in_foreach_calls
 
+    super.onInit();
+    setMarkerIcon();
+    allMarkers.value = getAllMArkers();
     print(allMarkers);
     pageController = PageController(initialPage: 0, viewportFraction: 0.8)
       ..addListener(onScroll);
-    super.onInit();
   }
 
-  Stream<List<Marker>> getAllMArkers() {
+  List<Marker> getAllMArkers() {
     final List<Marker> markers =
         projectsController.projects.map((ProjectModel element) {
       return Marker(
-          markerId: MarkerId(element.name),
-          draggable: false,
-          infoWindow: InfoWindow(
-              title: element.name, snippet: element.location.toString()),
-          position: _geopointToLatLng(element.location));
+        markerId: MarkerId(element.name),
+        draggable: false,
+        infoWindow: InfoWindow(
+            title: element.name, snippet: element.location.toString()),
+        position: _geopointToLatLng(element.location),
+        icon: _markerIcon.value,
+      );
     }).toList();
+    return markers;
+  }
 
-    return markers as Stream<List<Marker>>;
+  Future<void> setMarkerIcon() async {
+    _markerIcon.value = await BitmapDescriptor.fromAssetImage(
+        const ImageConfiguration(), 'assets/logos/makiHead_0.5.png');
   }
 
   void onScroll() {
@@ -51,12 +57,24 @@ class MapController extends GetxController {
   }
 
   Future<void> moveCamera() async {
-    mapController.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
-        target: _geopointToLatLng(
-            projectsController.projects[pageController.page!.toInt()].location),
-        zoom: 25.0,
-        bearing: 20.0,
-        tilt: 35.0)));
+    final ProjectModel _project =
+        projectsController.projects[pageController.page!.toInt()];
+
+    setShowWindow(MarkerId(_project.name));
+    mapController.animateCamera(
+      CameraUpdate.newCameraPosition(
+        CameraPosition(
+          target: _geopointToLatLng(_project.location),
+          zoom: 18.0,
+          bearing: 20.0,
+          tilt: 35.0,
+        ),
+      ),
+    );
+  }
+
+  void setShowWindow(MarkerId markerId) {
+    mapController.showMarkerInfoWindow(markerId);
   }
 
   LatLng _geopointToLatLng(GeoPoint geoPoint) {

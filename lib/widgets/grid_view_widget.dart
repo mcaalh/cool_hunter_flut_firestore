@@ -85,7 +85,8 @@ class GridViewWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 IconButton(
-                  onPressed: () => print('up your cool attitude'),
+                  onPressed: () =>
+                      favouritesController.addProjectToFavourites(project),
                   icon: Icon(
                     CoolIcons.f8896490c87ab7e94bf37195d14fddf5,
                     color: favouritesController.isProjectAlreadyAdded(project)
