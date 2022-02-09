@@ -42,28 +42,6 @@ class Category {
 
   String? getUrlLang(String key) => toJson()[key];
 
-  // Category({
-  //   required this.categorie,
-  //   required this.id,
-  //   required this.menu,
-  //   required this.partenaires,
-  //   required this.themes,
-  //   required this.nbrLangues,
-  //   required this.titre,
-  //   required this.imageURL,
-  //   required this.sousTitres,
-  //   required this.fr,
-  //   required this.en,
-  //   required this.es,
-  //   required this.it,
-  //   required this.de,
-  //   required this.pt,
-  //   required this.ru,
-  //   required this.ar,
-  //   required this.zh,
-  //   required this.ja,
-  // });
-
   Map<String, String?> toJson() {
     return <String, String?>{
       'categorie': categorie,

@@ -1,4 +1,4 @@
-name: CoolHunter
+name: coolhunter
 description: Cool Hunter App
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -13,7 +13,8 @@ dependencies:
     sdk: flutter
   flutter_staggered_grid_view: ^0.4.0
   firebase_core: "^1.4.0"
-  cloud_firestore: ^2.4.0
+  cloud_functions: ^3.0.4
+  cloud_firestore: ^2.5.1
   firebase_messaging: ^10.0.4
   google_maps_flutter: ^2.0.6
   firebase_auth: "^3.0.1"
@@ -22,12 +23,93 @@ dependencies:
   # state management
   provider: ^5.0.0
   get: ^4.3.0
+  uuid: ^3.0.4
+  logger: ^1.0.0
   equatable: ^2.0.3
   cupertino_icons: ^1.0.3 
+  timeago: ^3.1.0
+  modal_bottom_sheet: ^2.0.0
+  sliding_up_panel: ^2.0.0+1
+  dio: ^4.0.0
+  http: ^0.13.3
+  flutter_dotenv: ^5.0.0
+  like_button: ^2.0.3
+
+  #Stripe paiement
+  flutter_stripe: ^2.0.0
+  location: ^4.3.0
+  lottie: ^1.2.0
+  slimy_card: ^1.0.4
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
 flutter:
+
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
   uses-material-design: true
+
+  assets:
+    - .env
+    - assets/
+    - assets/data/
+    - assets/icons/
+    - assets/images/
+    - assets/images/404/
+    - assets/images/0_home/
+    - assets/images/1_visite/
+    - assets/images/2_hebergement_gastronomie/
+    - assets/images/3_shopping/
+    - assets/images/4_etudiants/
+    - assets/images/5_mes_bons_plans/
+    - assets/images/6_mes_infos_pratiques/
+    - assets/images/7_mon_offre/
+    - assets/images/_brand/
+    - assets/img/
+    - assets/logos/
+  # To add assets to your application, add an assets section, like this:
+  # assets:
+  #   - images/a_dot_burr.jpeg
+  #   - images/a_dot_ham.jpeg
+
+  # An image asset can refer to one or more resolution-specific "variants", see
+  # https://flutter.dev/assets-and-images/#resolution-aware.
+
+  # For details regarding adding assets from package dependencies, see
+  # https://flutter.dev/assets-and-images/#from-packages
+
+  # To add custom fonts to your application, add a fonts section here,
+  # in this "flutter" section. Each entry in this list should have a
+  # "family" key with the font family name, and a "fonts" key with a
+  # list giving the asset and other descriptors for the font. For
+  # example:
+  fonts:
+    - family:  CoolIcons
+      fonts:
+        - asset: assets/fonts/CoolIcons.ttf
+    - family:  MesIcon
+      fonts:
+        - asset: assets/fonts/MesIcon.ttf
+    
+    - family:  MesInfoIcon
+      fonts:
+        - asset: assets/fonts/MesInfoIcon.ttf
+
+    - family: BytelIcons
+      fonts:
+        - asset: assets/fonts/BytelIcons.ttf
+    
+    - family: BestSchoolFont
+      fonts:
+        - asset: assets/fonts/BestSchoolFont.otf
+
+    - family: BestSchoolDingbatFont
+      fonts:
+        - asset: assets/fonts/BestSchoolDingbatFont.otf
+    
+    - family: BestSchoolOutlineFont
+      fonts:
+        - asset: assets/fonts/BestSchoolOutlineFont.otf

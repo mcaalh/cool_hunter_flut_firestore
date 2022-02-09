@@ -1,60 +1,98 @@
-import 'package:flutter/material.dart';
-import 'package:CoolHunter/models/category.dart';
-import 'package:CoolHunter/theme/bytel_icons_icons.dart';
+import 'package:CoolHunter/constants/controllers.dart';
+import 'package:CoolHunter/models/project.dart';
+import 'package:CoolHunter/theme/cool_icons_icons.dart';
 import 'package:CoolHunter/theme/main_theme.dart';
+import 'package:CoolHunter/widgets/custom_button_dialog_widget.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:get/get.dart';
 
 class GridViewWidget extends StatelessWidget {
-  const GridViewWidget({Key? key, required this.categories}) : super(key: key);
+  GridViewWidget({
+    Key? key,
+  }) : super(key: key);
 
-  final List<Category> categories;
+  final RxList<ProjectModel> data = projectsController.projects;
 
   @override
   Widget build(BuildContext context) {
-    return StaggeredGridView.countBuilder(
-      staggeredTileBuilder: (int index) =>
-          StaggeredTile.fit(index % 3 == 0 ? 4 : 2),
-      crossAxisCount: 8,
-      itemCount: 50,
-      itemBuilder: (BuildContext context, int index) => _buildCard(index),
-    );
+    return Obx(() => StaggeredGridView.countBuilder(
+          staggeredTileBuilder: (int index) =>
+              StaggeredTile.fit(index % 3 == 0 ? 6 : 3),
+          crossAxisCount: 9,
+          itemCount: projectsController.projects.length,
+          itemBuilder: (BuildContext context, int index) => _buildCard(index),
+        ));
   }
 
   Widget _buildCard(int index) {
-    // final Category category = categories[index];
-    return Card(
-      elevation: 0,
-      color: Colors.transparent,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(
-          top: Radius.circular(kRoundedCorner),
+    final ProjectModel project = data[index];
+    return Obx(() {
+      return Card(
+        elevation: 0,
+        color: Colors.transparent,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(kRoundedCorner),
+          ),
         ),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          ClipRRect(
-            borderRadius: BorderRadius.circular(8.0),
-            child: Image.network(
-              'https://source.unsplash.com/random?sig=$index',
-              fit: BoxFit.cover,
-            ),
-          ),
-          Row(
-            children: <Widget>[
-              IconButton(
-                onPressed: () => print('up your cool attitude'),
-                icon: const Icon(
-                  BytelIcons.rvb_divers_divers_motivation,
-                  color: Colors.white,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            GestureDetector(
+              onTap: () {
+                Get.toNamed<dynamic>('/details-slide/',
+                    arguments: <String, dynamic>{
+                      'project': project,
+                      'index': index,
+                    });
+              },
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(8.0),
+                child: Stack(
+                  alignment: Alignment.topRight,
+                  children: <Widget>[
+                    Hero(
+                      tag: project.imageURL,
+                      child: Image.network(
+                        project.imageURL,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    IconButton(
+                        onPressed: () {
+                          favouritesController.addProjectToFavourites(project);
+                        },
+                        icon: Icon(
+                          Icons.favorite,
+                          color: favouritesController
+                                  .isProjectAlreadyAdded(project)
+                              ? const Color(0xFFCC0047)
+                              : Colors.grey,
+                        ))
+                  ],
                 ),
-              )
-            ],
-          ),
-          const Text('data')
-        ],
-      ),
-    );
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                IconButton(
+                  onPressed: () =>
+                      favouritesController.addProjectToFavourites(project),
+                  icon: Icon(
+                    CoolIcons.f8896490c87ab7e94bf37195d14fddf5,
+                    color: favouritesController.isProjectAlreadyAdded(project)
+                        ? const Color(0xFFFFA200)
+                        : Colors.grey,
+                  ),
+                ),
+                const CustomDialogWidget(),
+              ],
+            ),
+          ],
+        ),
+      );
+    });
   }
 }
