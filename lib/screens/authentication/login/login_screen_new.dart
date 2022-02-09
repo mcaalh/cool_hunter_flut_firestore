@@ -1,8 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:CoolHunter/constants/controllers.dart';
-import 'package:CoolHunter/screens/home/my_home_screen.dart';
 import 'package:CoolHunter/widgets/custom_button.dart';
-import 'package:get/get.dart';
+import 'package:flutter/material.dart';
 
 class LoginScreenNew extends StatelessWidget {
   const LoginScreenNew({Key? key}) : super(key: key);
@@ -78,8 +76,6 @@ class LoginScreenNew extends StatelessWidget {
               bgColor: Colors.blue.shade700,
               text: 'Login',
               onTap: () {
-                print('et login tap');
-                // Get.to<dynamic>(MyHomeScreen());
                 authenticationController.signIn();
               },
               txtColor: Colors.black,

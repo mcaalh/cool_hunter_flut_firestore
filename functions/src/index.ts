@@ -46,7 +46,7 @@ exports.create_payment_sheet = functions.https.onRequest(async (req, res) => {
   } catch (err) {
     res.status(400).json({
       error: {
-        message: err.message,
+        message: "err.message",
       },
     });
   }
@@ -94,7 +94,7 @@ exports.connected_payment_intent = functions.https.onRequest(async (req, res) =>
   } catch (err) {
     res.status(400).json({
       error: {
-        message: err.message,
+        message: "err.message",
       },
     });
   }

@@ -2,15 +2,14 @@ import 'package:CoolHunter/constants/controllers.dart';
 import 'package:CoolHunter/constants/firebase.dart';
 import 'package:CoolHunter/models/models.dart';
 import 'package:CoolHunter/screens/home/widgets/home_nav_bar_widget.dart';
-import 'package:flutter/material.dart';
-import 'package:CoolHunter/controllers/authentication_controller.dart';
 import 'package:CoolHunter/widgets/grid_view_widget.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class MyHomeScreen extends StatelessWidget {
-  final UserModel? user;
+  const MyHomeScreen({Key? key, this.user}) : super(key: key);
 
-  MyHomeScreen({Key? key, this.user}) : super(key: key);
+  final UserModel? user;
 
   @override
   Widget build(BuildContext context) {
@@ -41,9 +40,7 @@ class MyHomeScreen extends StatelessWidget {
                 ),
                 ListTile(
                   onTap: () {
-                    print(authenticationController.userModel.value.name);
                     authenticationController.signOut();
-                    // print('signout');
                   },
                   leading: const Icon(Icons.exit_to_app),
                   title: const Text('Log out'),

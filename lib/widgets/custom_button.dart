@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'custom_text.dart';
 
@@ -20,28 +19,27 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: GestureDetector(
-        onTap: onTap,
-        child: PhysicalModel(
-          color: Colors.grey.withOpacity(.4),
-          elevation: 5,
-          borderRadius: BorderRadius.circular(20),
+    return GestureDetector(
+      onTap: onTap,
+      child: PhysicalModel(
+        color: Colors.grey.withOpacity(.4),
+        elevation: 5,
+        borderRadius: BorderRadius.circular(20),
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color: bgColor,
+          ),
           child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: bgColor,
-              ),
-              child: Container(
-                margin: EdgeInsets.all(14),
-                alignment: Alignment.center,
-                child: CustomText(
-                  text: text,
-                  color: txtColor,
-                  size: 22,
-                  weight: FontWeight.normal,
-                ),
-              )),
+            margin: const EdgeInsets.all(14),
+            alignment: Alignment.center,
+            child: CustomText(
+              text: text,
+              color: txtColor,
+              size: 22,
+              weight: FontWeight.normal,
+            ),
+          ),
         ),
       ),
     );

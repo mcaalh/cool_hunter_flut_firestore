@@ -36,30 +36,7 @@ class CoolController extends GetxController {
     }
   }
 
-  // void decreaseQuantity(FavouriteModel item) {
-  //   if (item.quantity == 1) {
-  //     removeProjectFromFavourites(item);
-  //   } else {
-  //     removeProjectFromFavourites(item);
-  //     item.quantity--;
-  //     authenticationController.updateUserData(<String, dynamic>{
-  //       'cart': FieldValue.arrayUnion(<dynamic>[item.toJson()])
-  //     });
-  //   }
-  // }
-
-  // void increaseQuantity(FavouriteModel item) {
-  //   removeProjectFromFavourites(item);
-  //   item.quantity++;
-  //   // logger.i({"quantity": item.quantity});
-  //   authenticationController.updateUserData(<String, dynamic>{
-  //     'cart': FieldValue.arrayUnion(<dynamic>[item.toJson()])
-  //   });
-  // }
-
   bool isProjectAlreadyAdded(ProjectModel project) {
-    // authenticationController.userModel.value.donations.where((element) => element.projectId == project.id).isNotEmpty;
-
     return authenticationController.userModel.value.favourites
         .contains(project.id.toString());
   }

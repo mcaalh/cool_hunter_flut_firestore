@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class MapBottomItemWidget extends StatelessWidget {
-  MapBottomItemWidget({
+  const MapBottomItemWidget({
     Key? key,
-    required this.index,
+    this.index = 0.0,
   }) : super(key: key);
-  double index = 0.0;
+  final double index;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,6 @@ class MapBottomItemWidget extends StatelessWidget {
       builder: (BuildContext context, Widget? widget) {
         double value = 1;
         if (_pageController.position.haveDimensions) {
-          // print(_pageController.position);
           value = _pageController.page!.toDouble() - index;
           value = (1 - (value.abs() * 0.3) + 0.06).clamp(0.0, 1.0);
         }
@@ -33,10 +32,8 @@ class MapBottomItemWidget extends StatelessWidget {
       },
       child: InkWell(
         onTap: () {
-          // moveCamera();
           mapController.setShowWindow(MarkerId(_project.name.toString()));
           mapController.moveCamera();
-          print('tap inkwell');
         },
         child: Stack(
           children: <Widget>[
@@ -46,8 +43,6 @@ class MapBottomItemWidget extends StatelessWidget {
                   horizontal: 10.0,
                   vertical: 20.0,
                 ),
-                // height: 500.0,
-                // width: 275.0,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.0),
                   boxShadow: const <BoxShadow>[

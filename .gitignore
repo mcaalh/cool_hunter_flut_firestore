@@ -49,3 +49,4 @@ app.*.map.json
 
 **/ios/Runner/GoogleService-Info.plist
 **/android/app/google-services.json
+_update-notifier-last-checked

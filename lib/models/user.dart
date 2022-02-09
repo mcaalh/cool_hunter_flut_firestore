@@ -1,8 +1,3 @@
-import 'package:CoolHunter/models/donation.dart';
-import 'package:CoolHunter/models/favourite.dart';
-import 'package:CoolHunter/screens/favourites/widgets/favourite_card_widget.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-
 class UserModel {
   UserModel({
     required this.name,
@@ -18,7 +13,6 @@ class UserModel {
     email = data['email'] as String;
     id = data['id'] as String;
     donations = data[DONATIONS] as List<dynamic>;
-    // donations = _convertDonationItems(data[DONATIONS] ?? []);
     favourites = data[FAV] as List<dynamic>;
   }
 
@@ -33,17 +27,4 @@ class UserModel {
   late String id;
   late List<dynamic> donations;
   late List<dynamic> favourites;
-
-  // List<DonationModel> _convertDonationItems(List donationFromDb) {
-  //   final List<DonationModel> _result = <DonationModel>[];
-  //   if (donationFromDb.isNotEmpty) {
-  //     Map<dynamic, dynamic> donationFromDb.forEach((<dynamic>element) {
-  //       _result.add(DonationModel.fromMap(<dynamic>element));
-  //     });
-  //   }
-  //   return _result;
-  // }
-
-  // List donationItemsToJson() =>
-  //     favourites.map((item) => item.toJson()).toList();
 }

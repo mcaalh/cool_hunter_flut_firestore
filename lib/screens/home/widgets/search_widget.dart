@@ -36,9 +36,7 @@ class Searchwidget extends StatelessWidget {
                 hintStyle: kLabelSidebar,
               ),
               style: kLabelSidebar,
-              onChanged: (String newText) {
-                print(newText);
-              },
+              onChanged: (String newText) {},
             ),
           ),
         ),

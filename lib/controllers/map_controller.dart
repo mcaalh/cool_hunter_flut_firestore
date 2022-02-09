@@ -1,10 +1,10 @@
 import 'package:CoolHunter/constants/controllers.dart';
-import 'package:location/location.dart';
 import 'package:CoolHunter/models/project.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:location/location.dart';
 
 class MapController extends GetxController {
   static MapController instance = Get.find();
@@ -19,12 +19,9 @@ class MapController extends GetxController {
 
   @override
   void onInit() {
-    // ignore: avoid_function_literals_in_foreach_calls
-
     super.onInit();
     setMarkerIcon();
     allMarkers.value = getAllMArkers();
-    print(allMarkers);
     pageController = PageController(initialPage: 0, viewportFraction: 0.8)
       ..addListener(onScroll);
   }

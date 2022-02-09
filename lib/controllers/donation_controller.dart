@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:CoolHunter/constants/controllers.dart';
@@ -31,7 +30,6 @@ class DonationController extends GetxController {
 
   String donationCollection = 'donations';
   List<DonationModel> payments = <DonationModel>[];
-  // late Map<dynamic, dynamic> _paymentIntentData;
 
   @override
   void onReady() {
@@ -39,15 +37,15 @@ class DonationController extends GetxController {
     Stripe.merchantIdentifier = 'merchant.app.coolhunter';
   }
 
-  Future<void> applePayPayment() async {
+  Future<void> applePayPayment(String amount) async {
     try {
       // 1. Present Apple Pay sheet
       await Stripe.instance.presentApplePay(
-        const ApplePayPresentParams(
+        ApplePayPresentParams(
           cartItems: <ApplePayCartSummaryItem>[
             ApplePayCartSummaryItem(
               label: 'Product Test',
-              amount: '20',
+              amount: amount,
             ),
           ],
           country: 'Fr',
@@ -66,34 +64,16 @@ class DonationController extends GetxController {
       await Stripe.instance.confirmApplePayPayment(clientSecret);
       get_x.Get.snackbar<dynamic>('Apple pay payment ', 'Succeded');
     } catch (e) {
-      print('Apple pay payment failed ${e.toString()}');
       get_x.Get.snackbar<dynamic>(
           'Apple pay payment ', 'failed ${e.toString()}');
     }
   }
-
-  // Future<Map<dynamic, dynamic>> _createPaymentSheet() async {
-  //   try {
-  //     final response = await dio.post<dynamic>(
-  //       '$stripeUrl/create_payment_sheet',
-  //     );
-  //     print('response.data.......');
-  //     print(response.data);
-  //     return response.data;
-  //   } catch (e) {
-  //     print(e.toString());
-  //   }
-  // }
 
   Future<void> makePayment() async {
     final dio_x.Response<dynamic> response = await dio.post<dynamic>(
       '$stripeUrl/create_payment_sheet',
     );
     final dynamic _paymentSheetData = response.data;
-    print('response......: ${_paymentSheetData['paymentIntent']}');
-    // String clientSecret = _paymentSheetData['paymentIntent'].toString();
-    // _paymentIntentData = json.decode(response.data);
-    // print('_paymentIntentData: ${_paymentIntentData.toString()}');
     try {
       await Stripe.instance.initPaymentSheet(
         paymentSheetParameters: SetupPaymentSheetParameters(
@@ -127,7 +107,6 @@ class DonationController extends GetxController {
       );
       get_x.Get.snackbar<dynamic>(
           'payed successefully', 'ou paid ${clientSecret['paymentIntent']}');
-      // _paymentIntentData = {};
     } catch (e) {
       print('error flutter display : ${e.toString()}');
     }
@@ -169,7 +148,6 @@ class DonationController extends GetxController {
       'clientId': authenticationController.userModel.value.id,
       'status': paymentStatus,
       'paymentId': paymentId,
-      // "cart": authenticationController.userModel.value.cartItemsToJson(),
       'amount': favouritesController.totalCartPrice.value.toStringAsFixed(2),
       'createdAt': DateTime.now().microsecondsSinceEpoch,
     });
@@ -184,13 +162,11 @@ class DonationController extends GetxController {
             isEqualTo: authenticationController.userModel.value.id)
         .get()
         .then((QuerySnapshot<Map<String, dynamic>> snapshot) {
-      // ignore: avoid_function_literals_in_foreach_calls
-      snapshot.docs.forEach((QueryDocumentSnapshot<Map<String, dynamic>> doc) {
+      for (QueryDocumentSnapshot<Map<String, dynamic>> doc in snapshot.docs) {
         final DonationModel payment = DonationModel.fromMap(doc.data());
         payments.add(payment);
-      });
+      }
 
-      // logger.i("length ${payments.length}");
       dismissLoadingWidget();
       get_x.Get.to<dynamic>(() => DonationsScreen());
     });

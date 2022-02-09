@@ -1,6 +1,4 @@
 import 'package:CoolHunter/constants/firebase.dart';
-import 'package:CoolHunter/models/donation.dart';
-import 'package:CoolHunter/models/favourite.dart';
 import 'package:CoolHunter/models/user.dart';
 import 'package:CoolHunter/screens/authentication/authentication_screen.dart';
 import 'package:CoolHunter/screens/home/my_home_screen.dart';
@@ -85,13 +83,11 @@ class AuthenticationController extends GetxController {
       Get.offAll<dynamic>(() => AuthenticationScreen());
     } else {
       userModel.bindStream(listenToUser());
-      Get.offAll<dynamic>(() => MyHomeScreen());
+      Get.offAll<dynamic>(() => const MyHomeScreen());
     }
   }
 
   void updateUserData(Map<String, dynamic> data) {
-    // logger.i("UPDATED");
-    print('User updated');
     try {
       firebaseFirestore
           .collection(usersCollection)

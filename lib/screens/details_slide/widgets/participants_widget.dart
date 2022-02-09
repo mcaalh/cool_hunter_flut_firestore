@@ -11,7 +11,6 @@ class ParticipantsWidget extends StatelessWidget {
       child: Stack(children: <Positioned>[
         for (int i = 0; i < 4; i++)
           Positioned(
-            // top: 590,
             left: (20 + i * 35).toDouble(),
             width: 50,
             height: 50,
@@ -22,7 +21,7 @@ class ParticipantsWidget extends StatelessWidget {
                       image: AssetImage('assets/img/pic-${i + 1}.png'),
                       fit: BoxFit.cover)),
             ),
-          )
+          ),
       ]),
     );
   }

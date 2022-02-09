@@ -4,7 +4,6 @@ ThemeData mainTheme() {
   return ThemeData(
     fontFamily: 'BouyguesRead',
     primaryColor: const Color(0xFF25465F),
-    accentColor: const Color(0xFF109DB9),
     dividerColor: const Color(0xFFF3F3F3),
     scaffoldBackgroundColor: const Color(0xFFF9F9F9),
     backgroundColor: const Color(0xFFF2F2F2),
@@ -16,6 +15,7 @@ const double kCardHeight = 400;
 
 //Colors
 const Color kBackgroundColor = Color(0xFFFFFFFF);
+const Color kSecondaryBackgroundColor = Color(0x5F797979);
 const Color kSidebarBackgroundColor = Color(0xFFF2F2F2);
 const Color kTrendBackgroundColor = Color(0xFF56BFD8);
 const Color kLanguageBackgroundColor = Color(0xFFF9F9F9);
@@ -24,7 +24,7 @@ const Color kSecondaryLabelColor = Color(0xFF109DB9);
 const Color kHoverColor = Color(0xFF109DB9);
 const Color kTrendLabelColor = Color(0xFFFFFFFF);
 const Color kShadowColor = Color(0xFF109DB9);
-const Color kStandardButtonColor = Color(0xFFEA5B0F);
+const Color kStandardButtonColor = Color(0xFF006BAE);
 const Color kStandardLabelColor = Color(0xFFFFFFFF);
 
 //height of all
@@ -124,4 +124,12 @@ const TextStyle kSecondaryButton = TextStyle(
   fontFamily: 'BouyguesRead',
   color: kSecondaryLabelColor,
   height: 1.14,
+);
+
+const TextStyle kStyleShortDescription = TextStyle(
+  fontSize: 14.0,
+  fontWeight: FontWeight.w200,
+  fontFamily: 'BouyguesRead',
+  color: kPrimaryLabelColor,
+  // height: 1.14,
 );

@@ -38,10 +38,9 @@ class PanelWidget extends StatelessWidget {
         behavior: HitTestBehavior.opaque,
         onTap: onClickedPanel,
         child: Container(
-          padding: const EdgeInsets.all(24),
+          padding: const EdgeInsets.all(10),
           child: Column(
             children: <Widget>[
-              // const ParticipantsWidget(),
               PanelHeaderWidget(
                 project: project,
                 onClickedFollowing: onClickedFollowing,

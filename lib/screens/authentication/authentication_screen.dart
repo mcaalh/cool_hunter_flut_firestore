@@ -15,7 +15,7 @@ class AuthenticationScreen extends StatelessWidget {
         body: Obx(
           () => SingleChildScrollView(
             child: Stack(
-              children: [
+              children: <Widget>[
                 Image.asset(
                   'assets/images/bg3.png',
                   width: double.infinity,
@@ -31,11 +31,11 @@ class AuthenticationScreen extends StatelessWidget {
                     ),
                     Visibility(
                         visible: _appController.isLoginWidgetDisplayed.value,
-                        child: LoginScreenNew()),
+                        child: const LoginScreenNew()),
                     Visibility(
                         visible: !_appController.isLoginWidgetDisplayed.value,
                         child: RegisterScreen()),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Visibility(
@@ -44,8 +44,8 @@ class AuthenticationScreen extends StatelessWidget {
                         onTap: () {
                           _appController.changeDisplayedAuthWidget();
                         },
-                        text1: "Don\'t have an account?",
-                        text2: "Create account!",
+                        text1: "Don't have an account?",
+                        text2: 'Create account!',
                       ),
                     ),
                     Visibility(
@@ -54,8 +54,8 @@ class AuthenticationScreen extends StatelessWidget {
                         onTap: () {
                           _appController.changeDisplayedAuthWidget();
                         },
-                        text1: "Already have an account?",
-                        text2: "Sign in!!",
+                        text1: 'Already have an account?',
+                        text2: 'Sign in!!',
                       ),
                     ),
                   ],

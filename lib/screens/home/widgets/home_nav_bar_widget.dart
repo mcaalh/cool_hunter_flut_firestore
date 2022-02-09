@@ -36,7 +36,7 @@ class HomeNavBarWidget extends StatelessWidget {
                   context: context,
                   builder: (BuildContext context) => Container(
                     color: Colors.white,
-                    child: FavouritesScreen(),
+                    child: const FavouritesScreen(),
                   ),
                 );
               },

@@ -8,10 +8,10 @@ class RegisterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(10),
+      margin: const EdgeInsets.all(10),
       decoration: BoxDecoration(
           color: Colors.white,
-          boxShadow: [
+          boxShadow: <BoxShadow>[
             BoxShadow(
               color: Colors.grey.withOpacity(.5),
               blurRadius: 10,
@@ -19,13 +19,13 @@ class RegisterScreen extends StatelessWidget {
           ],
           borderRadius: BorderRadius.circular(20)),
       child: Wrap(
-        children: [
+        children: <Widget>[
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+            children: <Widget>[
               Container(
                 width: MediaQuery.of(context).size.width / 1.2,
-                margin: EdgeInsets.only(top: 30),
+                margin: const EdgeInsets.only(top: 30),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(25),
                   color: Colors.grey.withOpacity(.3),
@@ -35,11 +35,11 @@ class RegisterScreen extends StatelessWidget {
                       const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                   child: TextField(
                     controller: authenticationController.name,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                         icon: Icon(Icons.person),
                         fillColor: Colors.white,
                         border: InputBorder.none,
-                        hintText: "Name"),
+                        hintText: 'Name'),
                   ),
                 ),
               ),
@@ -47,10 +47,10 @@ class RegisterScreen extends StatelessWidget {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+            children: <Widget>[
               Container(
                 width: MediaQuery.of(context).size.width / 1.2,
-                margin: EdgeInsets.only(top: 30),
+                margin: const EdgeInsets.only(top: 30),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(25),
                   color: Colors.grey.withOpacity(.3),
@@ -60,11 +60,11 @@ class RegisterScreen extends StatelessWidget {
                       const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                   child: TextField(
                     controller: authenticationController.email,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                         icon: Icon(Icons.email_outlined),
                         fillColor: Colors.white,
                         border: InputBorder.none,
-                        hintText: "Email"),
+                        hintText: 'Email'),
                   ),
                 ),
               ),
@@ -72,10 +72,10 @@ class RegisterScreen extends StatelessWidget {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+            children: <Widget>[
               Container(
                 width: MediaQuery.of(context).size.width / 1.2,
-                margin: EdgeInsets.only(top: 30),
+                margin: const EdgeInsets.only(top: 30),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(25),
                   color: Colors.grey.withOpacity(.3),
@@ -89,7 +89,7 @@ class RegisterScreen extends StatelessWidget {
                         icon: Icon(Icons.lock),
                         fillColor: Colors.white,
                         border: InputBorder.none,
-                        hintText: "Password"),
+                        hintText: 'Password'),
                   ),
                 ),
               ),

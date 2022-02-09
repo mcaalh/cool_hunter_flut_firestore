@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class ProjectModel {
   ProjectModel({
@@ -9,8 +8,6 @@ class ProjectModel {
     required this.description,
     required this.donations,
     required this.location,
-    // this.price,
-    // required this.category,
   });
 
   ProjectModel.fromSnapshot(DocumentSnapshot<dynamic> snapshot) {
@@ -30,8 +27,6 @@ class ProjectModel {
     description = data[DESC] as String;
     donations = data[DONATIONS] as List<dynamic>;
     location = data[LOCATION] as GeoPoint;
-    // category = data[CATEGORY];
-    // price = data[PRICE].toDouble();
   }
   static const String ID = 'id';
   static const String IMAGE = 'imageURL';
@@ -39,8 +34,6 @@ class ProjectModel {
   static const String DESC = 'description';
   static const String DONATIONS = 'donations';
   static const String LOCATION = 'location';
-  // static const CATEGORY = "category";
-  // static const PRICE = "price";
 
   late String id;
   late String imageURL;
@@ -48,6 +41,4 @@ class ProjectModel {
   late String description;
   late List<dynamic> donations;
   late GeoPoint location;
-  // late double? price;
-  // late String category;
 }

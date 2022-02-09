@@ -1,7 +1,7 @@
 import 'package:CoolHunter/models/project.dart';
-import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class DetailsScreen extends StatelessWidget {
   const DetailsScreen({Key? key}) : super(key: key);
@@ -9,7 +9,6 @@ class DetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ProjectModel project = Get.arguments['project'] as ProjectModel;
-    final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Stack(
@@ -19,7 +18,8 @@ class DetailsScreen extends StatelessWidget {
             parallaxOffset: 0.5,
             minHeight: MediaQuery.of(context).size.height * 0.4,
             maxHeight: MediaQuery.of(context).size.height * 0.8,
-            borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
+            borderRadius:
+                const BorderRadius.vertical(top: Radius.circular(25.0)),
             body: Container(
               height: MediaQuery.of(context).size.height * 0.4,
               child: Hero(
@@ -32,7 +32,6 @@ class DetailsScreen extends StatelessWidget {
             ),
             panel: Container(
               margin: const EdgeInsets.only(left: 25, right: 25),
-              // width: width,
               height: 250,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),

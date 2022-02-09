@@ -2,16 +2,23 @@ class DonationModel {
   DonationModel({
     required this.id,
     required this.paymentId,
-    required String userId,
-    required String projectId,
     required this.amount,
     required this.status,
     required this.createdAt,
   });
 
+  DonationModel.fromMap(Map data) {
+    id = data[ID] as String;
+    createdAt = data[CREATED_AT] as int;
+    paymentId = data[PAYMENT_ID] as String;
+    userId = data[USER_ID] as String;
+    projectId = data[PROJECT_ID] as String;
+    amount = data[AMOUNT] as String;
+    status = data[STATUS] as String;
+  }
+
   static const String ID = 'id';
   static const String PAYMENT_ID = 'paymentId';
-  // static const CART = "cart";
   static const String AMOUNT = 'amount';
   static const String STATUS = 'status';
   static const String CREATED_AT = 'createdAt';
@@ -25,16 +32,4 @@ class DonationModel {
   late String amount;
   late String status;
   late int createdAt;
-  // late List cart;
-
-  DonationModel.fromMap(Map data) {
-    id = data[ID] as String;
-    createdAt = data[CREATED_AT] as int;
-    paymentId = data[PAYMENT_ID] as String;
-    userId = data[USER_ID] as String;
-    projectId = data[PROJECT_ID] as String;
-    amount = data[AMOUNT] as String;
-    status = data[STATUS] as String;
-    // cart = data[CART];
-  }
 }
